@@ -524,7 +524,7 @@ function menuHandler(){
 	  
     var auth3 = confirm("Enable new authority?");
 			
-    var authmodex = (menuid=="AuthY")? 2:0; 
+    var authmodex = (menuid=="authY")? 2:0; 
 
 //async function Authto_Inst(account, currentAuth, mode, newEnable, newAuth){
 
