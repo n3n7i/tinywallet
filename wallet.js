@@ -515,18 +515,20 @@ function menuHandler(){
 
     }
 	
-  if (menuid == "AuthX"){
+  if (menuid == "AuthX" || menuid == "AuthY"){
 	  
     var targ = s_pk(prompt("Target Account"));
     var auth1 = s_pk(prompt("Current Authority"));
 	  
     var auth2 = s_pk(prompt("New Authority"));
 	  
-    var auth3 = confirm("Enable new authority?);  
+    var auth3 = confirm("Enable new authority?);
+			
+    var authmodex = (menuid=="AuthY")? 2:0; 
 
 //async function Authto_Inst(account, currentAuth, mode, newEnable, newAuth){
 
-    var tx = Authto_Inst(targ, auth1, 0, auth3, auth2);
+    var tx = Authto_Inst(targ, auth1, authmodex, auth3, auth2);
 
     tx.then((x) => {
 	
