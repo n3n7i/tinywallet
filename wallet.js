@@ -515,14 +515,14 @@ function menuHandler(){
 
     }
 	
-  if (menuid == "AuthX" || menuid == "AuthY"){
+  if (menuid == "authX" || menuid == "authY"){
 	  
     var targ = s_pk(prompt("Target Account"));
     var auth1 = s_pk(prompt("Current Authority"));
 	  
     var auth2 = s_pk(prompt("New Authority"));
 	  
-    var auth3 = confirm("Enable new authority?);
+    var auth3 = confirm("Enable new authority?");
 			
     var authmodex = (menuid=="AuthY")? 2:0; 
 
@@ -580,7 +580,9 @@ function menuHandler(){
 
     lastReq = "mint3";
 
-    var tx = CreateAccount_mint(loadpub, mintpub, mintA_pub, 3, 0);
+    var dec = Number(prompt("Decimal places for new Mint:"));
+
+    var tx = CreateAccount_mint(loadpub, mintpub, mintA_pub, dec, 0);
 
     console.log(tx);
 
@@ -601,9 +603,11 @@ function menuHandler(){
 
     lastReq = "mint4";
 
-    var mintAm = prompt("Number to mint")
+    var mintAm = prompt("Number to mint");
 
-    var tx = Mintto_Inst(mintpub, mintA_pub, mintA_pub, Number(mintAm), 3);
+    var dec = Number(prompt("Decimal places for new Mint:"));
+
+    var tx = Mintto_Inst(mintpub, mintA_pub, mintA_pub, Number(mintAm), dec);
 
     tx.then((tx2) => {
 

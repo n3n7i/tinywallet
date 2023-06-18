@@ -89,10 +89,10 @@ async function Authto_Inst(account, currentAuth, mode, newEnable, newAuth){
     
   var inst3 =  new sol.TransactionInstruction({
           keys: [{ pubkey: account, isSigner: false, isWritable: true },                  
-	             { pubkey:  currentAuth, isSigner: true, isWritable: false },  
-		         { pubkey:  loadpub, isSigner: true, isWritable: true }, ],
+	         { pubkey:  currentAuth, isSigner: true, isWritable: false },  
+		 { pubkey:  loadpub, isSigner: true, isWritable: true }, ],
 
-          data: Buffer.from(Auth_Encoding(mode, newEnable, newAuth)),
+          data: Buffer.from(Auth_encoding(mode, newEnable, newAuth.toBuffer())),
           programId: tokenkey,
         });
 
