@@ -7,8 +7,8 @@
 
 export enum AuthorityType {
     MintTokens = 0,
-    FreezeAccount = 1,
-    AccountOwner = 2,
+    FreezeAccount = 1, // (<- ^ mint accounts) 
+    AccountOwner = 2,  // (<- v token accounts)
     CloseAccount = 3,
 }
 --------------
@@ -83,3 +83,50 @@ function Auth_encoding(i2, i3, newAuth){ //? [u8,u8,u8,k]
 
 
 
+async function Authto_Inst(account, currentAuth, mode, newEnable, newAuth){
+
+  //var destP = await det_ATAaddr(destPub, mintPub);
+    
+  var inst3 =  new sol.TransactionInstruction({
+          keys: [{ pubkey: account, isSigner: false, isWritable: true },                  
+	             { pubkey:  currentAuth, isSigner: true, isWritable: false },  
+		         { pubkey:  loadpub, isSigner: true, isWritable: true }, ],
+
+          data: Buffer.from(Auth_Encoding(mode, newEnable, newAuth)),
+          programId: tokenkey,
+        });
+
+  var tx = await new sol.Transaction();
+
+  tx.add(inst3); //sign [feepayer, currentAuth]
+
+  return tx;
+
+  }
+
+/*
+export function createSetAuthorityInstruction(
+    account: PublicKey,
+    currentAuthority: PublicKey,
+    authorityType: AuthorityType,
+    newAuthority: PublicKey | null,
+    multiSigners: (Signer | PublicKey)[] = [],
+    programId = TOKEN_PROGRAM_ID
+): TransactionInstruction {
+    const keys = addSigners([{ pubkey: account, isSigner: false, isWritable: true }], currentAuthority, multiSigners);
+
+    const data = Buffer.alloc(setAuthorityInstructionData.span);
+    setAuthorityInstructionData.encode(
+        {
+            instruction: TokenInstruction.SetAuthority,
+            authorityType,
+            newAuthorityOption: newAuthority ? 1 : 0,
+            newAuthority: newAuthority || new PublicKey(0),
+        },
+        data
+    );
+
+    return new TransactionInstruction({ keys, programId, data });
+}
+
+*/
