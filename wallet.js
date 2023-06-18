@@ -514,6 +514,27 @@ function menuHandler(){
 	});
 
     }
+	
+  if (menuid == "AuthX"){
+	  
+    var targ = s_pk(prompt("Target Account"));
+    var auth1 = s_pk(prompt("Current Authority"));
+	  
+    var auth2 = s_pk(prompt("New Authority"));
+	  
+    var auth3 = confirm("Enable new authority?);  
+
+    var tx = 
+
+    //tx.then((x) => {
+	
+	t_tx = x; 
+
+	xsend.log(JSON.stringify(t_tx) + "<br><input type=button value='Revoke' onclick='sendXTransaction()'></input>");
+
+	});
+
+    }
 
   if (menuid == "login" || menuid == "Newlogin"){
 
