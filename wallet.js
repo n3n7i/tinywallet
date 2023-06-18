@@ -523,16 +523,18 @@ function menuHandler(){
     var auth2 = s_pk(prompt("New Authority"));
 	  
     var auth3 = confirm("Enable new authority?);  
-			//async function Authto_Inst(account, currentAuth, mode, newEnable, newAuth){
 
+//async function Authto_Inst(account, currentAuth, mode, newEnable, newAuth){
 
     var tx = Authto_Inst(targ, auth1, 0, auth3, auth2);
 
     tx.then((x) => {
 	
 	t_tx = x; 
+	    
+	menuid = "mint4";
 
-	xsend.log(JSON.stringify(t_tx) + "<br><input type=button value='Revoke' onclick='sendXTransaction()'></input>"); //Fix sendtype?
+	xsend.log(JSON.stringify(t_tx) + "<br><input type=button value='setAuth' onclick='simXTransaction()'></input>"); //Fix sendtype?
 
 	});
 
